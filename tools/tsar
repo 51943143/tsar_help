@@ -1,0 +1,22 @@
+# cron tsar collect once per minute ( 3 s)
+MAILTO=""
+*/1 * * * * root /usr/bin/tsar --cron > /dev/null 2>&1
+*/1 * * * * sleep 3 &&  root /usr/bin/tsar --cron > /dev/null 2>&1
+*/1 * * * * sleep 6 &&  root /usr/bin/tsar --cron > /dev/null 2>&1
+*/1 * * * * sleep 9 &&  root /usr/bin/tsar --cron > /dev/null 2>&1
+*/1 * * * * sleep 12 &&  root /usr/bin/tsar --cron > /dev/null 2>&1
+*/1 * * * * sleep 15 &&  root /usr/bin/tsar --cron > /dev/null 2>&1
+*/1 * * * * sleep 18 &&  root /usr/bin/tsar --cron > /dev/null 2>&1
+*/1 * * * * sleep 21 &&  root /usr/bin/tsar --cron > /dev/null 2>&1
+*/1 * * * * sleep 24 &&  root /usr/bin/tsar --cron > /dev/null 2>&1
+*/1 * * * * sleep 27 &&  root /usr/bin/tsar --cron > /dev/null 2>&1
+*/1 * * * * sleep 30 &&  root /usr/bin/tsar --cron > /dev/null 2>&1
+*/1 * * * * sleep 33 &&  root /usr/bin/tsar --cron > /dev/null 2>&1
+*/1 * * * * sleep 36 &&  root /usr/bin/tsar --cron > /dev/null 2>&1
+*/1 * * * * sleep 39 &&  root /usr/bin/tsar --cron > /dev/null 2>&1
+*/1 * * * * sleep 42 &&  root /usr/bin/tsar --cron > /dev/null 2>&1
+*/1 * * * * sleep 45 &&  root /usr/bin/tsar --cron > /dev/null 2>&1
+*/1 * * * * sleep 48 &&  root /usr/bin/tsar --cron > /dev/null 2>&1
+*/1 * * * * sleep 51 &&  root /usr/bin/tsar --cron > /dev/null 2>&1
+*/1 * * * * sleep 54 &&  root /usr/bin/tsar --cron > /dev/null 2>&1
+*/1 * * * * sleep 57 &&  root /usr/bin/tsar --cron > /dev/null 2>&1

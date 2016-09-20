@@ -1,0 +1,6 @@
+
+sudo chmod 644 tsar
+
+sudo tsar --cron
+
+sudo tail /var/log/cron
