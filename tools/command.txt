@@ -4,3 +4,12 @@ sudo chmod 644 tsar
 sudo tsar --cron
 
 sudo tail /var/log/cron
+
+nohup tsar -l -i3 >>tsardata.txt &
+
+nohup java -Xms100m -Xmx100m   -jar tsarClient.jar >>tsarClient.log &
+
+
+
+
+

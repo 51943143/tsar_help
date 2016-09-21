@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>APP</title>
+    <link rel="stylesheet" type="text/css" href="${rc.contextPath}/assets/aui.css" />
+</head>
+<style>
+</style>
+
+<body>
+
+<script src="//cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
+<script type="text/javascript">
+var sock = new SockJS('${rc.contextPath}/metric');
+sock.onopen = function() {
+    console.log('open');
+};
+sock.onmessage = function(e) {
+    console.log('message', e.data);
+};
+sock.onclose = function() {
+    console.log('close');
+};
+
+sock.send('test');
+sock.close();
+</script>
+</body>
+
+</html>
