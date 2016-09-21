@@ -1,33 +1,61 @@
-<!DOCTYPE HTML>
-<html>
-
+<!DOCTYPE html>
+<html lang="zh-cn">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
-    <title>APP</title>
-    <link rel="stylesheet" type="text/css" href="${rc.contextPath}/assets/aui.css" />
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>tsar_server_metric</title>
+<link href="${rc.contextPath}/assets/lib/zui.min.css" rel="stylesheet">
+<link href="${rc.contextPath}/assets/lib/zui.dashboard.min.css"
+	rel="stylesheet">
 </head>
-<style>
-</style>
-
 <body>
+<div class=""> <p style="text-align:center ">远程服务器指标采集</p></div>
+	<div id="dashboard" class="dashboard dashboard-draggable"
+		data-height="300">
+		<section class="row">
+			<div class="col-md-12 col-sm-12">
+				<div class="panel" >
+					<div class="panel-heading">
+						<i class="icon icon-list"></i> <span class="title">面板标题</span>
+					</div>
+					<div class="panel-body" style="">
+						<p>面板内容。</p>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
 
-<script src="//cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
-<script type="text/javascript">
-var sock = new SockJS('${rc.contextPath}/metric');
-sock.onopen = function() {
-    console.log('open');
-};
-sock.onmessage = function(e) {
-    console.log('message', e.data);
-};
-sock.onclose = function() {
-    console.log('close');
-};
+	<script src="${rc.contextPath}/assets/lib/jquery.js"></script>
+	<script src="${rc.contextPath}/assets/lib/sockjs.min.js"></script>
+	<script src="${rc.contextPath}/assets/lib/zui.min.js"></script>
+	<script src="${rc.contextPath}/assets/lib/zui.dashboard.min.js"></script>
 
-sock.send('test');
-sock.close();
-</script>
+	<script type="text/javascript">
+		$('#dashboard').dashboard({
+			draggable : true
+		});
+
+		function connect() {
+			var target = '${rc.contextPath}/metric';
+			var ws = new SockJS(target);
+			ws.onopen = function() {
+				console.log('Info: WebSocket connection opened.');
+			};
+			ws.onmessage = function(event) {
+				console.log('Received: ' + event.data);
+				append(event.data);
+			};
+			ws.onclose = function() {
+				console.log('Info: WebSocket connection closed.');
+			};
+		}
+		connect();
+
+		function append(data) {
+			console.log(data);
+		}
+	</script>
 </body>
-
 </html>

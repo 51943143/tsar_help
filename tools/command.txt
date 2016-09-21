@@ -13,3 +13,5 @@ nohup java -Xms100m -Xmx100m   -jar tsarClient.jar >>tsarClient.log &
 
 
 
+
+
