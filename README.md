@@ -12,7 +12,7 @@
 3）浏览器访问 http://127.0.0.1:7002/tsar-server/
 
 运行效果图如下：
-
+![](https://github.com/51943143/tsar_help/blob/master/server/run_result.png)
 
 
 
