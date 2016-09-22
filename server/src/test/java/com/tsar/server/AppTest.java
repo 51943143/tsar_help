@@ -29,5 +29,10 @@ public class AppTest {
 		
 	}
 	
+	@Test
+	public void testgetDestIp() {
+		List<String> ip=this.s.getDestIp();
+		System.out.println(Json.toJson(ip));
+	}
  
 }

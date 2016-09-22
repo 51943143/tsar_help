@@ -41,8 +41,8 @@ public class MyWebSocketHandler extends TextWebSocketHandler {
 			if (session.isOpen()) {
 				logger.info("...........sessionid:" + session.getId() + "..already conn , do  close................");
 				session.close(CloseStatus.SERVER_ERROR);
-				sessionList.remove(session);
 			}
+			sessionList.remove(session);
 		} catch (IOException e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();

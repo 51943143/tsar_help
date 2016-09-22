@@ -1,5 +1,6 @@
 package com.tsar.server;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.nutz.json.Json;
@@ -25,20 +26,34 @@ public class MyWebSocketScheduledTasks {
 	@Scheduled(fixedRate = 3 * 1000)
 	public void senddata() {
 		try {
-			for (WebSocketSession session : MyWebSocketHandler.sessionList) {
-				this.send(session);
-			}
+			this.send();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			// e.printStackTrace();
 		}
 	}
 
-	private void send(WebSocketSession session) throws Exception {
-		List<ServerMetric> list = s.loadAndSave();
-		if (list != null && list.size() > 0) {
-			session.sendMessage(new TextMessage(Json.toJson(list)));
+	private void send() throws Exception {
+		if (MyWebSocketHandler.sessionList.size() > 0) {
+			List<ServerMetric> list = transData(s.loadAndSave());
+			logger.debug("send session size :" + String.valueOf(MyWebSocketHandler.sessionList.size()));
+			for (WebSocketSession session : MyWebSocketHandler.sessionList) {
+				if (list != null && list.size() > 0 && session.isOpen()) {
+					logger.debug("send message :" + session.getId() + "   new list size:" + String.valueOf(list.size()));
+					session.sendMessage(new TextMessage(Json.toJson(list)));
+				}
+			}
 		}
+	}
+	
+	private 	List<ServerMetric>  transData(List<ServerMetric> list) {
+//		List<ServerMetric> newlist = new ArrayList<ServerMetric>();
+//		for(ServerMetric m:list) {
+//			m.setDest_url(m.getDest_url().replaceAll(".", "_"));
+//			newlist.add(m);
+//		}
+//		return newlist;
+		return list;
 	}
 
 }
