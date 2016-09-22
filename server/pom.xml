@@ -61,6 +61,7 @@
 		</plugins>
 		<finalName>tsarServer</finalName>
 
+
 	</build>
 
 </project>
